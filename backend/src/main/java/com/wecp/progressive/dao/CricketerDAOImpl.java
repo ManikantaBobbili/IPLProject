@@ -12,32 +12,6 @@ import java.util.List;
 
 public class CricketerDAOImpl implements CricketerDAO {
 
-    // @Override
-    // public int addCricketer(Cricketer cricketer) {
-    //     return -1;
-
-    // }
-
-    // @Override
-    // public Cricketer getCricketerById(int cricketerId) {
-    //     return null;
-    // }
-
-    // @Override
-    // public void updateCricketer(Cricketer cricketer) {
-        
-    // }
-
-    // @Override
-    // public void deleteCricketer(int cricketerId) {
-        
-    // }
-
-    // @Override
-    // public List<Cricketer> getAllCricketers() {
-    //     return List.of();
-    // }
-
     @Override
     public int addCricketer(Cricketer cricketer) throws SQLException {
         Connection connection = null;
@@ -49,7 +23,7 @@ public class CricketerDAOImpl implements CricketerDAO {
             String sql = "INSERT INTO cricketer (team_id, cricketer_name, age, nationality, experience, role, total_runs, total_wickets) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 
-            statement.setInt(1, cricketer.getTeamId());
+            statement.setInt(1, cricketer.getTeam().getTeamId());
             statement.setString(2, cricketer.getCricketerName());
             statement.setInt(3, cricketer.getAge());
             statement.setString(4, cricketer.getNationality());
@@ -78,6 +52,7 @@ public class CricketerDAOImpl implements CricketerDAO {
         }
         return generatedID;
     }
+
 
     @Override
     public Cricketer getCricketerById(int cricketerId) throws SQLException {
@@ -131,7 +106,7 @@ public class CricketerDAOImpl implements CricketerDAO {
             connection = DatabaseConnectionManager.getConnection();
             String sql = "UPDATE cricketer SET team_id = ?, cricketer_name = ?, age = ?, nationality = ?, experience = ?, role = ?, total_runs = ?, total_wickets = ? WHERE cricketer_id = ?";
             statement = connection.prepareStatement(sql);
-            statement.setInt(1, cricketer.getTeamId());
+            statement.setInt(1, cricketer.getTeam().getTeamId());
             statement.setString(2, cricketer.getCricketerName());
             statement.setInt(3, cricketer.getAge());
             statement.setString(4, cricketer.getNationality());

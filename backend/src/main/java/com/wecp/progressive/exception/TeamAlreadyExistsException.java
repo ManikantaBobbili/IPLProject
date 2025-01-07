@@ -1,4 +1,9 @@
 package com.wecp.progressive.exception;
 
-public class TeamAlreadyExistsException {
+import java.sql.SQLException;
+
+public class TeamAlreadyExistsException extends SQLException {
+    public TeamAlreadyExistsException(String m){
+        super(m);
+    }
 }

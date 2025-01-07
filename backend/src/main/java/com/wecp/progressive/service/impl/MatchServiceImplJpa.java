@@ -1,46 +1,58 @@
 package com.wecp.progressive.service.impl;
-
-// import java.util.List;
-
-// import com.wecp.progressive.dao.MatchDAO;
-// import com.wecp.progressive.entity.Match;
-// import com.wecp.progressive.service.MatchService;
-
-public class MatchServiceImplJpa {
+ 
+import com.wecp.progressive.entity.Match;
+import com.wecp.progressive.exception.NoMatchesFoundException;
+import com.wecp.progressive.repository.MatchRepository;
+import com.wecp.progressive.service.MatchService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+ 
+import java.sql.SQLException;
+import java.util.List;
+ 
+@Service
+public class MatchServiceImplJpa implements MatchService {
+ 
+    private MatchRepository matchRepository;
+ 
+    @Autowired
+    public MatchServiceImplJpa(MatchRepository matchRepository) {
+        this.matchRepository = matchRepository;
+    }
+ 
+    @Override
+    public List<Match> getAllMatches() throws SQLException {
+        return matchRepository.findAll();
+    }
+ 
+    @Override
+    public Match getMatchById(int matchId) throws SQLException {
+        return matchRepository.findByMatchId(matchId);
+    }
+ 
+    @Override
+    public Integer addMatch(Match match) throws SQLException {
+        return matchRepository.save(match).getMatchId();
+    }
+ 
+    @Override
+    public void updateMatch(Match match) throws SQLException {
+        matchRepository.save(match);
+    }
+ 
+    @Override
+    public void deleteMatch(int matchId) throws SQLException {
+        matchRepository.deleteById(matchId);
+    }
+ 
+    @Override
+    public List<Match> getAllMatchesByStatus(String status) throws SQLException {
+       
+        List<Match> matchList = matchRepository.findAllByStatus(status);
+      if(matchList.isEmpty())
+      {
+        throw new NoMatchesFoundException("No Matches found with status : "+status);
+      }
+        return matchList;
+    }
 }
-
-// }implements MatchService{
-//     private MatchDAO matchDAO;
-
-//     public MatchServiceImplJpa(MatchDAO matchDAO) {
-//         this.matchDAO = matchDAO;
-//     }
-
-//     @Override
-//     public List<Match> getAllMatches() {
-//         return List.of();
-//     }
-
-//     @Override
-//     public Match getMatchById(int matchId) {
-//         return null;
-
-//     }
-
-//     @Override
-//     public Integer addMatch(Match match) {
-//         return -1;
-
-//     }
-
-//     @Override
-//     public void updateMatch(Match match) {
-
-//     }
-
-//     @Override
-//     public void deleteMatch(int matchId) {
-
-//     }
-
-// }

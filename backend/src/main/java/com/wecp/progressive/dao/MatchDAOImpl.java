@@ -9,31 +9,6 @@ import java.util.List;
 
 public class MatchDAOImpl implements MatchDAO {
 
-    // @Override
-    // public int addMatch(Match match) {
-    //     return -1;
-    // }
-
-    // @Override
-    // public Match getMatchById(int matchId) {
-    //     return null;
-    // }
-
-    // @Override
-    // public void updateMatch(Match match) {
-        
-    // }
-
-    // @Override
-    // public void deleteMatch(int matchId) {
-        
-    // }
-
-    // @Override
-    // public List<Match> getAllMatches() {
-    //     return List.of();
-    // }
-
     @Override
     public int addMatch(Match match) throws SQLException {
         Connection connection = null;
@@ -45,13 +20,13 @@ public class MatchDAOImpl implements MatchDAO {
             String sql = "INSERT INTO matches (first_team_id, second_team_id, match_date, venue, result, status, winner_team_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
             statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 
-            statement.setInt(1, match.getFirstTeamId());
-            statement.setInt(2, match.getSecondTeamId());
+            statement.setInt(1, match.getFirstTeam().getTeamId());
+            statement.setInt(2, match.getSecondTeam().getTeamId());
             statement.setDate(3, new java.sql.Date(match.getMatchDate().getTime()));
             statement.setString(4, match.getVenue());
             statement.setString(5, match.getResult());
             statement.setString(6, match.getStatus());
-            statement.setInt(7, match.getWinnerTeamId());
+            statement.setInt(7, match.getWinnerTeam().getTeamId());
 
             statement.executeUpdate();
 
@@ -124,13 +99,13 @@ public class MatchDAOImpl implements MatchDAO {
             connection = DatabaseConnectionManager.getConnection();
             String sql = "UPDATE matches SET first_team_id = ?, second_team_id = ?, match_date = ?, venue = ?, result = ?, status = ?, winner_team_id = ? WHERE match_id = ?";
             statement = connection.prepareStatement(sql);
-            statement.setInt(1, match.getFirstTeamId());
-            statement.setInt(2, match.getSecondTeamId());
+            statement.setInt(1, match.getFirstTeam().getTeamId());
+            statement.setInt(2, match.getSecondTeam().getTeamId());
             statement.setDate(3, new java.sql.Date(match.getMatchDate().getTime()));
             statement.setString(4, match.getVenue());
             statement.setString(5, match.getResult());
             statement.setString(6, match.getStatus());
-            statement.setInt(7, match.getWinnerTeamId());
+            statement.setInt(7, match.getWinnerTeam().getTeamId());
             statement.setInt(8, match.getMatchId());
             statement.executeUpdate();
         } catch (SQLException e) {
