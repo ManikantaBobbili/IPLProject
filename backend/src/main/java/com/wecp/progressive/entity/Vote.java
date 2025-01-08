@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+// import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Vote {
     @Id
@@ -14,8 +16,10 @@ public class Vote {
     private String email;
     private String category;
     @OneToOne
+    // @JsonIgnore
     private Cricketer cricketer;
     @OneToOne
+    // @JsonIgnore
     private Team team;
     public Vote() {
     }

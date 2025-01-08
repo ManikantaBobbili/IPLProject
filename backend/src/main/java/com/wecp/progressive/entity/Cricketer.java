@@ -8,9 +8,10 @@ public class Cricketer implements Comparable<Cricketer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cricketerId;
+    private int teamId;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "team_id")
+    // @JoinColumn(name = "team_id")
     private Team team;
 
     private String cricketerName;
@@ -36,6 +37,7 @@ public class Cricketer implements Comparable<Cricketer> {
         this.totalWickets = totalWickets;
     }
 
+    
     public int getCricketerId() {
         return cricketerId;
     }
@@ -112,5 +114,13 @@ public class Cricketer implements Comparable<Cricketer> {
     public int compareTo(Cricketer otherCricketer) {
         return Comparator.comparingInt(Cricketer::getExperience)
                 .compare(this, otherCricketer);
+    }
+
+    public int getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
     }
 }

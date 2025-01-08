@@ -1,14 +1,17 @@
 package com.wecp.progressive.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.wecp.progressive.entity.Vote;
 import com.wecp.progressive.repository.VoteRepository;
 import com.wecp.progressive.service.VoteService;
-
+@Service
 public class VoteServiceImpl implements VoteService {
 
     @Autowired
@@ -25,8 +28,15 @@ public class VoteServiceImpl implements VoteService {
     }
 
     @Override
-    public Map<String, Long> getVotesCountOfAllCategories() {
-        return null;
+    public Map<String, Long> getVotesCountOfAllCategories(){
+        Map<String,Long> count = new HashMap<>();
+        count.put("Team", voteRepository.countByCategory("Team"));
+        count.put("Batsman", voteRepository.countByCategory("Batsman"));
+        count.put("Bowler", voteRepository.countByCategory("Bowler"));
+        count.put("All-rounder", voteRepository.countByCategory("All-rounder"));
+        count.put("Wicketkeeper", voteRepository.countByCategory("Wicketkeeper"));
+        return count;
+        
     }
 
     
