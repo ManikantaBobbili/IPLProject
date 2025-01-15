@@ -19,7 +19,6 @@ public class TicketBooking {
     // private int matchId;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    // @JsonIgnore
     private Match match;
     private String email;
     private int numberOfTickets;
