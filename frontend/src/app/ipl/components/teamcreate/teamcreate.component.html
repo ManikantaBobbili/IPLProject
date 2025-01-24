@@ -1,0 +1,61 @@
+<div>
+    <form [formGroup] = "teamFrom" (ngSubmit) = "onSubmit()">
+      <div>
+        <label for="teamId"> Team ID:</label>
+        <input id="teamId" type="number" formControlName="teamId" placeholder="Enter Team ID"/>
+        <div *ngIf="teamForm.get('teamId')?.touched && teamForm.get('teamId')?.invalid">
+          <small>Team ID is required and must be a positive number.</small>
+        </div>
+      </div>
+
+      <div>
+        <label for="teamName">Team Name:</label>
+        <input id="teamName" type="text" formControlName="teamName"/>
+        <div *ngIf="teamForm.get('teamName')?.touched && teamForm.get('teamName')?.invalid">        
+            <small>Team Name is required and must be at least 2 characters long.</small>
+        </div>
+      </div>
+            
+      <div>
+        <label for="location">Location:</label>
+        <input id="location" type="text" formControlName="location"/>
+        <div *ngIf="teamForm.get('location')?.touched && teamForm.get('location')?.invalid" >
+                <small>Location is required.</small>
+        </div>
+      </div>
+
+      <div>
+        <label for="ownerName">Owner Name:</label>
+        <input id="ownerName" type="text" formControlName="ownerName"/>
+        <div *ngIf="teamForm.get('ownerName')?.touched && teamForm.get('ownerName')?.invalid">
+          <small>Owner Name is required and must be at least 2 characters long.</small>
+        </div>
+      </div>
+
+      <div>
+        <label for="establishmentYear">Establishment Year:</label>
+        <input id="establishmentYear" type="number" formControlName="establishmentYear"/>
+        <div *ngIf="teamForm.get('establishmentYear')?.touched && teamForm.get('establishmentYear')?.invalid" class="error">
+            <small>Establishment Year is required and must be valid.</small>
+        </div>
+      </div>
+
+            
+      <div>
+        <button type="submit" [disabled]="teamForm.invalid">
+                Create Team
+        </button>
+        <button type="button" (click)="resetForm()">
+          Reset Form
+        </button>
+      </div>
+    </form>
+         
+          <div *ngIf="successMessage" class="success">
+            <p>{{ successMessage }}</p>
+          </div>
+          <div *ngIf="errorMessage" class="error">
+            <p>{{ errorMessage }}</p>
+          </div>
+        </div>
+</div>
