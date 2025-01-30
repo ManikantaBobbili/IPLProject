@@ -1,10 +1,18 @@
-import { OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Vote } from "../../types/Vote";
+
+@Component({
+    selector: 'app-vote',
+    templateUrl: './vote.component.html',
+    styleUrls: ['./vote.component.scss'] 
+  })
 
 export class VoteComponent implements OnInit {
-    voteForm:FormGroup;
+    voteForm!:FormGroup;
     successMessage: string | null = null;
     errorMessage: string | null = null;
+    vote:Vote |null = null;
 
     constructor(private fb:FormBuilder){}
     ngOnInit(): void {
@@ -19,6 +27,7 @@ export class VoteComponent implements OnInit {
 
     onSubmit():void{
         if(this.voteForm.valid){
+            this.vote = this.voteForm.value;
             this.successMessage = 'Vote created successfully!';
             this.errorMessage = null;
             console.log('Vote Created: ', this.voteForm.value);
@@ -36,3 +45,4 @@ export class VoteComponent implements OnInit {
   
 
 }
+
