@@ -1,41 +1,37 @@
-<div>
-    <h2>Book Tickets</h2>
-    <form [formgroup]="ticketBookingForm" (ngSubmit) = "onSubmit()">
-        <div>
-            <label for="ticketBookingId"> Ticket Booking ID</label>
-            <input type="number" id="ticketBookingId" formControlName="ticketBookingId" placeholder="Enter Ticket ticketBooking Id">
-        </div>
+<div class="ticket-booking-container">
+  <h2>Book Tickets</h2>
 
-        <div>
-            <label for="email">Email</label>
-            <input type="text" id="email" formControlName="email" placeholder="Enter the Email">
-        </div>
-
-        <div>
-            <label for="matchId">Match Id</label>
-            <input type="number" id="matchId" formControlName="matchId" placeholder="Enter the Match Id">
-
-        </div>
-
-        <div>
-            <label for="numberOfTickets">Cricketer ID</label>
-            <input type="number" id="numberOfTickets" formControlName="numberOfTickets" placeholder="Enter the Number of Tickets">
-        </div>
-
-        <div>
-            <button type="submit">Book Tickets</button>
-            <button type="button" (click)="resetForm()">Reset</button>
-        </div>
-        
-    </form>
-
-    <div *ngIf="successMessage" class="success">
-        <p>{{ successMessage }}</p>
+  <form [formGroup]="ticketBookingForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="bookingId">Booking ID</label>
+      <input id="bookingId" formControlName="bookingId" type="number" placeholder="Enter Booking ID">
     </div>
 
-    <div *ngIf="errorMessage" class="error">
-        <p>{{ errorMessage }}</p>
+    <div>
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" type="email" placeholder="Enter Email">
     </div>
 
+    <div>
+      <label for="matchId">Match ID</label>
+      <input id="matchId" formControlName="matchId" type="number" placeholder="Enter Match ID">
+    </div>
+
+    <div>
+      <label for="numberOfTickets">Number of Tickets</label>
+      <input id="numberOfTickets" formControlName="numberOfTickets" type="number" placeholder="Enter Number of Tickets">
+    </div>
+
+    <button type="submit">Book Tickets</button>
+    <button type="button" (click)="resetForm()">Reset</button>
+  </form>
+
+  <div *ngIf="successMessage" class="success">
+    <p>{{ successMessage }}</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error">
+    <p>{{ errorMessage }}</p>
+  </div>
 </div>
 
