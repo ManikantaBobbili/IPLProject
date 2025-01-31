@@ -1,6 +1,7 @@
 **/target/
 **/node_modules/
 .vscode
+.systemfiles
 resolv.sh
 initialize-github.sh
 frontend/.angular
