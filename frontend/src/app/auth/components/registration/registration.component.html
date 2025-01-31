@@ -1,0 +1,47 @@
+<div class="registration-container">
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input id="fullName" formControlName="fullName" type="text" />
+        <div *ngIf="registrationForm.get('fullName')?.invalid && registrationForm.get('fullName')?.touched">
+          <span *ngIf="registrationForm.get('fullName')?.errors?.required">Full Name is required.</span>
+          <span *ngIf="registrationForm.get('fullName')?.errors?.minlength">At least 3 characters required.</span>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input id="username" formControlName="username" type="text" />
+        <div *ngIf="registrationForm.get('username')?.invalid && registrationForm.get('username')?.touched">
+          <span *ngIf="registrationForm.get('username')?.errors?.required">Username is required.</span>
+          <span *ngIf="registrationForm.get('username')?.errors?.pattern">No special characters allowed.</span>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" formControlName="email" type="email" />
+        <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched">
+          <span *ngIf="registrationForm.get('email')?.errors?.required">Email is required.</span>
+          <span *ngIf="registrationForm.get('email')?.errors?.email">Invalid email format.</span>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" formControlName="password" type="password" />
+        <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
+          <span *ngIf="registrationForm.get('password')?.errors?.required">Password is required.</span>
+          <span *ngIf="registrationForm.get('password')?.errors?.minlength">At least 8 characters required.</span>
+          <span *ngIf="registrationForm.get('password')?.errors?.pattern">Must contain a capital letter & a number.</span>
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="registrationForm.invalid">Register</button>
+      <button type="button" (click)="resetForm()">Reset</button>
+    </form>
+  
+    <p class="success-message" *ngIf="successMessage">{{ successMessage }}</p>
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </div>
+  
