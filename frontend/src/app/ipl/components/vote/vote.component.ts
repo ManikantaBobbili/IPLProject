@@ -1,48 +1,44 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Vote } from "../../types/Vote";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Vote } from '../../types/Vote';
 
 @Component({
-    selector: 'app-vote',
-    templateUrl: './vote.component.html',
-    styleUrls: ['./vote.component.scss'] 
-  })
-
+  selector: 'app-vote',
+  templateUrl: './vote.component.html',
+  styleUrls: ['./vote.component.scss']
+})
 export class VoteComponent implements OnInit {
-    voteForm!:FormGroup;
-    successMessage: string | null = null;
-    errorMessage: string | null = null;
-    vote:Vote |null = null;
+  voteForm!: FormGroup;
+  vote: Vote | null = null;
+  successMessage: string | null = null;
+  errorMessage: string | null = null;
 
-    constructor(private fb:FormBuilder){}
-    ngOnInit(): void {
-        this.voteForm=this.fb.group({
-            voteId:[null,[Validators.required]],
-            email:['',[Validators.required]],
-            category:['',[Validators.required]],
-            cricketerId:[null ,[Validators.required]],
-            teamId:[null,[Validators.required]]
-        })
+  constructor(private formBuilder: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.voteForm = this.formBuilder.group({
+      voteId: [null, Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      category: ['', Validators.required],
+      cricketerId: [null, Validators.required],
+      teamId: [null, Validators.required]
+    });
+  }
+
+  onSubmit(): void {
+    if (this.voteForm.valid) {
+      this.vote = this.voteForm.value;
+      this.successMessage = 'Vote submitted successfully!';
+      this.errorMessage = null;
+      console.log(this.vote);
+      this.resetForm();
+    } else {
+      this.successMessage = null;
+      this.errorMessage = 'Please fill out all required fields correctly.';
     }
+  }
 
-    onSubmit():void{
-        if(this.voteForm.valid){
-            this.vote = this.voteForm.value;
-            this.successMessage = 'Vote created successfully!';
-            this.errorMessage = null;
-            console.log('Vote Created: ', this.voteForm.value);
-        } else {
-        this.errorMessage = 'Please fill out all required fields correctly.';
-        this.successMessage = null;
-        }
-    }
-
-
-    resetForm():void{
-        this.voteForm.reset();
-    }
-  
-  
-
+  resetForm(): void {
+    this.voteForm.reset();
+  }
 }
-

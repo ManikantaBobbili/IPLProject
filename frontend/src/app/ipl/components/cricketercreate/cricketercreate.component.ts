@@ -24,7 +24,7 @@ export class CricketerCreateComponent implements OnInit {
       cricketerName: ['', [Validators.required]],
       age: [null, [Validators.required,Validators.min(18)]],
       nationality: ['', [Validators.required, Validators.minLength(2)]],
-      experience: [null, Validators.required],
+      experience: [null, [Validators.required,Validators.min(1)]],
       role:['',[Validators.required]],
       totalRuns:[null,[Validators.required]],
       totalWickets:[null,[Validators.required]]
@@ -56,3 +56,4 @@ export class CricketerCreateComponent implements OnInit {
     });
   }
 }
+
