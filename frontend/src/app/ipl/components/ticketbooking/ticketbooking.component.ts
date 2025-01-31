@@ -1,47 +1,44 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { TicketBooking } from "../../types/TicketBooking";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TicketBooking } from '../../types/TicketBooking';
 
 @Component({
-    selector: 'app-ticketbooking',
-    templateUrl: './ticketbooking.component.html',
-    styleUrls: ['./ticketbooking.component.scss'] 
-  })
-
+  selector: 'app-ticketbooking',
+  templateUrl: './ticketbooking.component.html',
+  styleUrls: ['./ticketbooking.component.scss']
+})
 export class TicketBookingComponent implements OnInit {
-    ticketBookingForm!:FormGroup;
-    successMessage: string | null = null;
-    errorMessage: string | null = null;
-    ticketBooking:TicketBooking |null = null;
+  ticketBookingForm!: FormGroup;
+  ticketBooking: TicketBooking | null = null;
+  successMessage: string | null = null;
+  errorMessage: string | null = null;
 
-    constructor(private fb:FormBuilder){}
+  constructor(private formBuilder: FormBuilder) {}
 
-    ngOnInit(): void {
-        this.ticketBookingForm=this.fb.group({
-            bookingId:[null,[Validators.required]],
-            email:['',[Validators.required]],
-            matchId:[null,[Validators.required]],
-            numberOfTickets:[null ,[Validators.required,Validators.min(1)]]
-        })
+  ngOnInit(): void {
+    this.ticketBookingForm = this.formBuilder.group({
+      bookingId: [null, Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      matchId: [null, Validators.required],
+      numberOfTickets: [null, [Validators.required, Validators.min(1)]]
+    });
+  }
+
+  onSubmit(): void {
+    if (this.ticketBookingForm.valid) {
+      this.ticketBooking = this.ticketBookingForm.value;
+      this.successMessage = 'Tickets booked successfully!';
+      this.errorMessage = null;
+      console.log(this.ticketBooking);
+      this.resetForm();
+    } else {
+      this.successMessage = null;
+      this.errorMessage = 'Please fill out all required fields correctly.';
     }
+  }
 
-    onSubmit():void{
-        if(this.ticketBookingForm.valid){
-            this.ticketBooking = this.ticketBookingForm.value
-            this.successMessage = 'Tickets Booked successfully!';
-            this.errorMessage = null;
-            console.log(this.ticketBooking);
-        } else {
-        this.errorMessage = 'Please fill out all required fields correctly.';
-        this.successMessage = null;
-        }
-    }
-
-
-    resetForm():void{
-        this.ticketBookingForm.reset();
-    }
-  
-  
-
+  resetForm(): void {
+    this.ticketBookingForm.reset();
+  }
 }
+
