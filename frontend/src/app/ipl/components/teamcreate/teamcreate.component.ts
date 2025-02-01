@@ -27,7 +27,7 @@ export class TeamCreateComponent implements OnInit {
 
   onSubmit(): void {
     if (this.teamForm.valid) {
-      this.successMessage = 'Team has been successfully created!';
+      this.successMessage = 'Team created successfull!';
       this.errorMessage = null;
       console.log('Team Created: ', this.teamForm.value);
     } else {
