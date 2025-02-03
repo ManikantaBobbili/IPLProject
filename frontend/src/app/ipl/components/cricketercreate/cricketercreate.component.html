@@ -1,61 +1,66 @@
-<div class="cricketer-form-container"></div>
-  <h2>Create Cricketer</h2>
-  
-  <form [formGroup]="cricketerForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="cricketerId">Cricketer ID</label>
-      <input id="cricketerId" formControlName="cricketerId" type="number" placeholder="Enter Cricketer ID">
-    </div>
-    
-    <div>
-      <label for="teamId">Team ID</label>
-      <input id="teamId" formControlName="teamId" type="number" placeholder="Enter Team ID">
-    </div>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="text-center">Create Cricketer</h2>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="cricketerForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="cricketerId">Cricketer ID</label>
+                    <input id="cricketerId" formControlName="cricketerId" type="number" placeholder="Enter Cricketer ID" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="teamId">Team ID</label>
+                    <input id="teamId" formControlName="teamId" type="number" placeholder="Enter Team ID" class="form-control">
+                </div>
 
-    <div>
-      <label for="cricketerName">Cricketer Name</label>
-      <input id="cricketerName" formControlName="cricketerName" type="text" placeholder="Enter Cricketer Name">
-    </div>
-    
-    <div>
-      <label for="age">Age</label>
-      <input id="age" formControlName="age" type="number" placeholder="Enter Age">
-    </div>
+                <div class="form-group">
+                    <label for="cricketerName">Cricketer Name</label>
+                    <input id="cricketerName" formControlName="cricketerName" type="text" placeholder="Enter Cricketer Name" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input id="age" formControlName="age" type="number" placeholder="Enter Age" class="form-control">
+                </div>
 
-    <div>
-      <label for="nationality">Nationality</label>
-      <input id="nationality" formControlName="nationality" type="text" placeholder="Enter Nationality">
+                <div class="form-group">
+                    <label for="nationality">Nationality</label>
+                    <input id="nationality" formControlName="nationality" type="text" placeholder="Enter Nationality" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">Experience</label>
+                    <input id="experience" formControlName="experience" type="number" placeholder="Enter Experience" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <input id="role" formControlName="role" type="text" placeholder="Enter Role" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="totalRuns">Total Runs</label>
+                    <input id="totalRuns" formControlName="totalRuns" type="number" placeholder="Enter Total Runs" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="totalWickets">Total Wickets</label>
+                    <input id="totalWickets" formControlName="totalWickets" type="number" placeholder="Enter Total Wickets" class="form-control">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create Cricketer</button>
+                <button type="button" (click)="resetForm()" class="btn btn-secondary ml-2">Reset</button>
+            </form>
+
+            <div *ngIf="successMessage" class="alert alert-success mt-3">
+                <p>{{ successMessage }}</p>
+            </div>
+            
+            <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+                <p>{{ errorMessage }}</p>
+            </div>
+        </div>
     </div>
-
-    <div>
-      <label for="experience">Experience</label>
-      <input id="experience" formControlName="experience" type="number" placeholder="Enter Experience">
-    </div>
-
-    <div>
-      <label for="role">Role</label>
-      <input id="role" formControlName="role" type="text" placeholder="Enter Role">
-    </div>
-
-    <div>
-      <label for="totalRuns">Total Runs</label>
-      <input id="totalRuns" formControlName="totalRuns" type="number" placeholder="Enter Total Runs">
-    </div>
-
-    <div>
-      <label for="totalWickets">Total Wickets</label>
-      <input id="totalWickets" formControlName="totalWickets" type="number" placeholder="Enter Total Wickets">
-    </div>
-
-    <button type="submit">Create Cricketer</button>
-    <button type="button" (click)="resetForm()">Reset</button>
-  </form>
-
-  <div *ngIf="successMessage" class="success">
-      <p>{{ successMessage }}</p>
-  </div>
-  
-  <div *ngIf="errorMessage" class="error">
-      <p>{{ errorMessage }}</p>
-  </div>
 </div>

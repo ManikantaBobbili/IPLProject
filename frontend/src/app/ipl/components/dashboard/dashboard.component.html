@@ -1,0 +1,92 @@
+<div class="container mt-5">
+  <h2>IPL Dashboard</h2>
+
+  <!-- Teams Table -->
+  <div class="table-responsive">
+    <h3>Teams</h3>
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Team ID</th>
+          <th>Team Name</th>
+          <th>Location</th>
+          <th>Owner Name</th>
+          <th>Establishment Year</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let team of teams">
+          <td>{{ team.teamId }}</td>
+          <td>{{ team.teamName }}</td>
+          <td>{{ team.location }}</td>
+          <td>{{ team.ownerName }}</td>
+          <td>{{ team.establishmentYear }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Cricketers Table -->
+  <div class="table-responsive mt-4">
+    <h3>Cricketers</h3>
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Cricketer ID</th>
+          <th>Cricketer Name</th>
+          <th>Age</th>
+          <th>Nationality</th>
+          <th>Experience</th>
+          <th>Role</th>
+          <th>Total Runs</th>
+          <th>Total Wickets</th>
+          <th>Team Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cricketer of cricketers">
+          <td>{{ cricketer.cricketerId }}</td>
+          <td>{{ cricketer.cricketerName }}</td>
+          <td>{{ cricketer.age }}</td>
+          <td>{{ cricketer.nationality }}</td>
+          <td>{{ cricketer.experience }}</td>
+          <td>{{ cricketer.role }}</td>
+          <td>{{ cricketer.totalRuns }}</td>
+          <td>{{ cricketer.totalWickets }}</td>
+          <td>{{ cricketer.team.teamName }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Matches Table -->
+  <div class="table-responsive mt-4">
+    <h3>Matches</h3>
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Match ID</th>
+          <th>First Team</th>
+          <th>Second Team</th>
+          <th>Match Date</th>
+          <th>Venue</th>
+          <th>Result</th>
+          <th>Status</th>
+          <th>Winner Team</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let match of matches">
+          <td>{{ match.matchId }}</td>
+          <td>{{ match.firstTeam.teamName }}</td>
+          <td>{{ match.secondTeam.teamName }}</td>
+          <td>{{ match.matchDate | date }}</td>
+          <td>{{ match.venue }}</td>
+          <td>{{ match.result }}</td>
+          <td>{{ match.status }}</td>
+          <td>{{ match.winnerTeam.teamName }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

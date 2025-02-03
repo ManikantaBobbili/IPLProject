@@ -11,6 +11,7 @@ import { Match } from "./types/Match";
 import { RouterModule } from "@angular/router";
 import { TicketBookingComponent } from "./components/ticketbooking/ticketbooking.component";
 import { VoteComponent } from "./components/vote/vote.component";
+import { DashboardComponent } from "./components/dashboard/dashboard.component";
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { VoteComponent } from "./components/vote/vote.component";
     MatchCreateComponent,
     TicketBookingComponent,
     VoteComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,

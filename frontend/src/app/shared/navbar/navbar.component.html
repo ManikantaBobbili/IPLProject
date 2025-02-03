@@ -1,3 +1,15 @@
 <nav>
-    <a routerLink="/team"></a>
+    <ul>
+        <li><a routerLink="/ipl">IPL</a></li>
+        <li *ngIf="role !== 'USER'">
+            <a routerLink="/ipl/team" >Add New Team</a>
+        </li>
+        <li *ngIf="role !== 'USER'">
+            <a routerLink="/ipl/cricketer" >Add New cricketer</a>
+        </li>
+        <li *ngIf="role === 'USER'">
+            <a routerLink="/ipl/match">Add New Match</a>
+        </li>
+    </ul>
+    <app-logout></app-logout>
 </nav>
