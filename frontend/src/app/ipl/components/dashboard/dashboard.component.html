@@ -1,7 +1,7 @@
-<div class="container mt-5">
+<!-- <div class="container mt-5">
+
   <h2>IPL Dashboard</h2>
 
-  <!-- Teams Table -->
   <div class="table-responsive">
     <h3>Teams</h3>
     <table class="table table-striped table-bordered">
@@ -12,6 +12,7 @@
           <th>Location</th>
           <th>Owner Name</th>
           <th>Establishment Year</th>
+          <th *ngIf="userRole === 'USER'">Vote</th>
         </tr>
       </thead>
       <tbody>
@@ -21,12 +22,14 @@
           <td>{{ team.location }}</td>
           <td>{{ team.ownerName }}</td>
           <td>{{ team.establishmentYear }}</td>
+          <td *ngIf="userRole === 'USER'">
+            <button (click)="vote(team.teamId)" class="btn btn-primary">Vote</button>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <!-- Cricketers Table -->
   <div class="table-responsive mt-4">
     <h3>Cricketers</h3>
     <table class="table table-striped table-bordered">
@@ -41,6 +44,7 @@
           <th>Total Runs</th>
           <th>Total Wickets</th>
           <th>Team Name</th>
+          <th *ngIf="userRole === 'USER'">Vote</th>
         </tr>
       </thead>
       <tbody>
@@ -54,12 +58,14 @@
           <td>{{ cricketer.totalRuns }}</td>
           <td>{{ cricketer.totalWickets }}</td>
           <td>{{ cricketer.team.teamName }}</td>
+          <td *ngIf="userRole === 'USER'">
+            <button (click)="vote(cricketer.cricketerId)" class="btn btn-primary">Vote</button>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <!-- Matches Table -->
   <div class="table-responsive mt-4">
     <h3>Matches</h3>
     <table class="table table-striped table-bordered">
@@ -73,6 +79,7 @@
           <th>Result</th>
           <th>Status</th>
           <th>Winner Team</th>
+          <th *ngIf="userRole === 'USER'">Book Ticket</th>
         </tr>
       </thead>
       <tbody>
@@ -80,13 +87,85 @@
           <td>{{ match.matchId }}</td>
           <td>{{ match.firstTeam.teamName }}</td>
           <td>{{ match.secondTeam.teamName }}</td>
-          <td>{{ match.matchDate | date }}</td>
+          <td>{{ match.matchDate }}</td>
           <td>{{ match.venue }}</td>
           <td>{{ match.result }}</td>
           <td>{{ match.status }}</td>
           <td>{{ match.winnerTeam.teamName }}</td>
+          <td *ngIf="userRole === 'USER' && match.status === 'Scheduled'">
+            <button (click)="bookTicket(match.matchId)" class="btn btn-success">Book Ticket</button>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
+
+  <div *ngIf="userRole === 'ADMIN'" class="mt-4">
+    <h2>Admin Actions</h2>
+    <button routerLink="/team" class="btn btn-primary">Add Team</button>
+    <button routerLink="/cricketer" class="btn btn-secondary">Add Cricketer</button>
+    <button routerLink="/match" class="btn btn-success">Add Match</button>
+  </div>
+
+</div> -->
+<app-navbar></app-navbar>
+
+<div class="container">
+  <h2>Teams</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Owner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let team of teams">
+        <td>{{ team.teamId }}</td>
+        <td>{{ team.teamName }}</td>
+        <td>{{ team.location }}</td>
+        <td>{{ team.ownerName }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Cricketers</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Team</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cricketer of cricketers">
+        <td>{{ cricketer.cricketerId }}</td>
+        <td>{{ cricketer.cricketerName }}</td>
+        <td>{{ cricketer.age }}</td>
+        <td>{{ cricketer.team.teamName }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Matches</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Venue</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let match of matches">
+        <td>{{ match.matchId }}</td>
+        <td>{{ match.matchDate | date }}</td>
+        <td>{{ match.venue }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

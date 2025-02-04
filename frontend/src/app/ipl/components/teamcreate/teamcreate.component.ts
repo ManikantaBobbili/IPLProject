@@ -29,7 +29,16 @@ export class TeamCreateComponent implements OnInit {
       establishmentYear: [null, [Validators.required, Validators.min(1900) , Validators.max(this.currentYear)]]
     });
   }
-
+  
+  resetForm(): void {
+    this.teamForm.reset({
+      teamId: null,
+      teamName: '',
+      location: '',
+      ownerName: '',
+      establishmentYear: this.currentYear
+    });
+  }
   onSubmit(): void {
     if (this.teamForm.valid) {
       // this.successMessage = 'Team created successfull!';
@@ -41,31 +50,7 @@ export class TeamCreateComponent implements OnInit {
       this.successMessage = null;
     }
   }
-
-  private addTeam() : void {
-    this.iplService.addTeam(this.teamForm.value).subscribe((response:Team)=>{
-      this.team = response;
-      this.successMessage = 'Team created successfully!';
-      this.errorMessage = null;
-      this.resetForm();
-    },
-  (error : HttpErrorResponse) => {
-    this.handleError(error);
-  })
-  }
-
-
-
-  resetForm(): void {
-    this.teamForm.reset({
-      teamId: null,
-      teamName: '',
-      location: '',
-      ownerName: '',
-      establishmentYear: this.currentYear
-    });
-  }
-
+  
   private handleError(error : HttpErrorResponse) : void {
     if(error.error instanceof ErrorEvent) {
       this.errorMessage = `Client-side error: ${error.error.message}`;
@@ -81,4 +66,22 @@ export class TeamCreateComponent implements OnInit {
     console.error('An error occurred:' , this.errorMessage);
 
   }
-}
+
+  addTeam() : void {
+    this.iplService.addTeam(this.teamForm.value).subscribe({
+      next : (response:Team)=>{
+      this.team = response;
+      this.successMessage = 'Team created successfully!';
+      this.errorMessage = null;
+      this.teamForm.reset();
+    },
+      error : (error : HttpErrorResponse) => {
+        this.handleError(error);
+      }})
+    }
+  }
+
+
+
+
+
