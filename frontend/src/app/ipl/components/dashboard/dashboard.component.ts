@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit{
     teams:Team[];
     cricketers:Cricketer[];
     matches:Match[];
+    userRole:string ='';
 
     constructor(private iplService:IplService, private router:Router){}
     ngOnInit(): void {
