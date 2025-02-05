@@ -14,6 +14,7 @@ import { NavBarComponent } from './navbar/navbar.component';
     RouterModule
   ],
   exports: [
+    NavBarComponent
   ]
 })
 export class SharedModule {}

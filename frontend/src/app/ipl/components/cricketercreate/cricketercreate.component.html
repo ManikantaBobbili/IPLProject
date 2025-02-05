@@ -1,14 +1,14 @@
-<div class="container mt-5">
+<div class="cricketer-form-container">
     <div class="card">
         <div class="card-header">
             <h2 class="text-center">Create Cricketer</h2>
         </div>
         <div class="card-body">
             <form [formGroup]="cricketerForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="cricketerId">Cricketer ID</label>
                     <input id="cricketerId" formControlName="cricketerId" type="number" placeholder="Enter Cricketer ID" class="form-control">
-                </div>
+                </div> -->
                 
                 <div class="form-group">
                     <label for="teamId">Team ID</label>
@@ -51,7 +51,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Create Cricketer</button>
-                <a routerLink="/ipl" class="task-list">Dashboard</a>
+                <button routerLink="/ipl">Dashboard</button>
             </form>
 
             <div *ngIf="successMessage" class="alert alert-success mt-3">

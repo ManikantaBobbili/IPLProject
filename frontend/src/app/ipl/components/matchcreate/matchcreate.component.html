@@ -1,13 +1,13 @@
 <div class="match-form-container">
   <h2>Create Match</h2>
   <form [formGroup]="matchForm" (ngSubmit)="onSubmit()">
-    <div>
+    <!-- <div>
         <label for="matchId">Match ID</label>
         <input id="matchId" formControlName="matchId" type="number" placeholder="Enter Match ID">
-        <!-- <div *ngIf="cricketerForm.get('cricketerId')?.invalid && cricketerForm.get('cricketerId')?.touched">
+        <div *ngIf="cricketerForm.get('cricketerId')?.invalid && cricketerForm.get('cricketerId')?.touched">
           <small class="class-error">Cricketer ID is required and must be a positive number.</small>
-        </div> -->
-    </div>
+        </div>
+    </div> -->
    
     <div>
       <label for="firstTeamId">First Team ID</label>
@@ -66,7 +66,7 @@
     </div>
    
     <button type="submit" [disabled]="matchForm.invalid">Create Match</button>
-    <a routerLink="/ipl" class="task-list">Dashboard</a>
+    <button routerLink="/ipl" >Dashboard</button>
   </form>
 
   <div *ngIf="successMessage" class="success">
