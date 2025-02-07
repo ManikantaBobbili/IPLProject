@@ -9,7 +9,7 @@ import { Injectable } from "@angular/core";
 })
 export class AuthService {
    private loginUrl = `${environment.apiUrl}`;
-  // private loginUrl = `http://localhost:8080`;
+
 
 
   httpOptions = {
@@ -43,5 +43,9 @@ export class AuthService {
 
   createUser(user: User): Observable<User> {
     return this.http.post<User>(`${this.loginUrl}/user/register`, user);
+  }
+
+  logToken() {
+    console.log("Current token: ", this.getToken());
   }
 }

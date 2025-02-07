@@ -26,6 +26,28 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  // onSubmit(): void {
+  //   if (this.loginForm.valid) {
+  //     this.authService.login(this.loginForm.value).pipe(
+  //       tap((response) => {
+  //         console.log(response);
+  //         localStorage.setItem("token", response.token);
+  //         localStorage.setItem("role", response.roles);
+  //         localStorage.setItem("user_id", response.userId);
+  //         console.log(localStorage.getItem("role"));
+  //         this.router.navigate(["ipl"]);
+  //       }),
+  //       catchError((error: string) => {
+  //         this.errorMessage = 'Invalid username or password';
+  //         console.error("Login error:", error);
+  //         return of(null);
+  //       })
+  //     ).subscribe();
+  //   } else {
+  //     this.errorMessage = 'Please fill out the form correctly.';
+  //   }
+  // }
+
   onSubmit(): void {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).pipe(
@@ -34,6 +56,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("token", response.token);
           localStorage.setItem("role", response.roles);
           localStorage.setItem("user_id", response.userId);
+          this.authService.logToken(); // Log the token for verification
           console.log(localStorage.getItem("role"));
           this.router.navigate(["ipl"]);
         }),
@@ -47,5 +70,6 @@ export class LoginComponent implements OnInit {
       this.errorMessage = 'Please fill out the form correctly.';
     }
   }
+  
 
 }

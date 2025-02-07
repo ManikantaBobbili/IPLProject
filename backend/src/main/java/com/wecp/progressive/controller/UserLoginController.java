@@ -52,7 +52,7 @@ public class UserLoginController {
         } catch(AuthenticationException e) {
              throw new ResponseStatusException(HttpStatus.UNAUTHORIZED , "Invalid username or password" ,e);
         }
-        // final UserDetails userDetails = userLoginService.loadUserByUsername(loginRequest.getUsername());
+        
         User foundUser = userLoginService.getUserByUsername(loginRequest.getUsername());
         final String token = jwtUtil.generateToken(loginRequest.getUsername());
         String role = foundUser.getRole();

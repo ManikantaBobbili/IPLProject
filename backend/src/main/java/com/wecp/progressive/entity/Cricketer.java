@@ -1,14 +1,20 @@
 package com.wecp.progressive.entity;
 
-import javax.persistence.*;
 import java.util.Comparator;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Cricketer implements Comparable<Cricketer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cricketerId;
-    private int teamId;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     // @JoinColumn(name = "team_id")
@@ -37,7 +43,6 @@ public class Cricketer implements Comparable<Cricketer> {
         this.totalWickets = totalWickets;
     }
 
-    
     public int getCricketerId() {
         return cricketerId;
     }
@@ -114,13 +119,5 @@ public class Cricketer implements Comparable<Cricketer> {
     public int compareTo(Cricketer otherCricketer) {
         return Comparator.comparingInt(Cricketer::getExperience)
                 .compare(this, otherCricketer);
-    }
-
-    public int getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(int teamId) {
-        this.teamId = teamId;
     }
 }

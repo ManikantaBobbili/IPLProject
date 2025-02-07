@@ -3,6 +3,7 @@
 
   <h2>IPL Dashboard</h2>
 
+  <!-- Teams Section -->
   <div class="table-responsive">
     <h3>Teams</h3>
     <table class="table table-striped table-bordered">
@@ -13,7 +14,7 @@
           <th>Location</th>
           <th>Owner Name</th>
           <th>Establishment Year</th>
-          <th *ngIf="role === 'USER'">Vote</th>
+          <th *ngIf="role === 'ADMIN'" colspan="2">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -23,14 +24,18 @@
           <td>{{ team.location }}</td>
           <td>{{ team.ownerName }}</td>
           <td>{{ team.establishmentYear }}</td>
-          <td *ngIf="role === 'USER'">
-            <button class="btn btn-primary">Vote</button>
+          <td *ngIf="role === 'ADMIN'">
+            <button class="btn btn-primary" (click)="editTeam(team.teamId)">Edit</button>
+          </td>
+          <td *ngIf="role === 'ADMIN'">
+            <button class="btn btn-danger" (click)="deleteTeam(team.teamId)">Delete</button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 
+  <!-- Cricketers Section -->
   <div class="table-responsive mt-4">
     <h3>Cricketers</h3>
     <table class="table table-striped table-bordered">
@@ -45,7 +50,7 @@
           <th>Total Runs</th>
           <th>Total Wickets</th>
           <th>Team Name</th>
-          <th *ngIf="role === 'USER'">Vote</th>
+          <th *ngIf="role === 'ADMIN'" colspan="2">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -59,14 +64,18 @@
           <td>{{ cricketer.totalRuns }}</td>
           <td>{{ cricketer.totalWickets }}</td>
           <td>{{ cricketer.team.teamName }}</td>
-          <td *ngIf="role === 'USER'">
-            <button class="btn btn-primary">Vote</button>
+          <td *ngIf="role === 'ADMIN'">
+            <button class="btn btn-primary" (click)="editCricketer(cricketer.cricketerId)">Edit</button>
+          </td>
+          <td *ngIf="role === 'ADMIN'">
+            <button class="btn btn-danger" (click)="deleteCricketer(cricketer.cricketerId)">Delete</button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 
+  <!-- Matches Section -->
   <div class="table-responsive mt-4">
     <h3>Matches</h3>
     <table class="table table-striped table-bordered">
@@ -80,7 +89,7 @@
           <th>Result</th>
           <th>Status</th>
           <th>Winner Team</th>
-          <th *ngIf="role === 'USER'">Book Ticket</th>
+          <th *ngIf="role === 'ADMIN'" colspan="2">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -93,9 +102,54 @@
           <td>{{ match.result }}</td>
           <td>{{ match.status }}</td>
           <td>{{ match.winnerTeam.teamName }}</td>
-          <td *ngIf="role === 'USER' && match.status === 'Scheduled'">
-            <button class="btn btn-success">Book Ticket</button>
+          <td *ngIf="role === 'ADMIN'">
+            <button class="btn btn-primary" (click)="editMatch(match.matchId)">Edit</button>
           </td>
+          <td *ngIf="role === 'ADMIN'">
+            <button class="btn btn-danger" (click)="deleteMatch(match.matchId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Tickets Booked Section -->
+  <div class="table-responsive mt-4" *ngIf="role === 'ADMIN'">
+    <h3>All Tickets Booked</h3>
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Booking ID</th>
+          <th>User Email</th>
+          <th>Match</th>
+          <th>Number of Tickets</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of allTicketsBooked">
+          <td>{{ booking.bookingId }}</td>
+          <td>{{ booking.email }}</td>
+          <td>{{ booking.matchId}}</td>
+          <td>{{ booking.numberOfTickets }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Votes Section -->
+  <div class="table-responsive mt-4" *ngIf="role === 'ADMIN'">
+    <h3>Votes Count of All Categories</h3>
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Category</th>
+          <th>Votes Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vote of voteArray">
+          <td>{{ vote.key }}</td>
+          <td>{{ vote.value }}</td>
         </tr>
       </tbody>
     </table>

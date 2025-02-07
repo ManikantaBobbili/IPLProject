@@ -9,8 +9,6 @@ public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int matchId;
-    private int firstTeamId;
-    private int secondTeamId;
 
 
     @ManyToOne(cascade = CascadeType.MERGE)
@@ -49,9 +47,7 @@ public class Match {
     }
     
 
-    public void setFirstTeamId(int firstTeamId) {
-        this.firstTeamId = firstTeamId;
-    }
+    
 
     public int getWinnerTeamId() {
         return winnerTeamId;
@@ -61,17 +57,7 @@ public class Match {
         this.winnerTeamId = winnerTeamId;
     }
 
-    public int getFirstTeamId() {
-        return firstTeamId;
-    }
 
-    public int getSecondTeamId() {
-        return secondTeamId;
-    }
-
-    public void setSecondTeamId(int secondTeamId) {
-        this.secondTeamId = secondTeamId;
-    }
 
     public int getMatchId() {
         return matchId;

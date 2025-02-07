@@ -1,4 +1,4 @@
-<div>
+<div class="ticket-booking-container">
     <h2>Book Tickets</h2>
   
     <form [formGroup]="ticketBookingForm" (ngSubmit)="onSubmit()">  
@@ -23,14 +23,15 @@
       </div>
   
       <button type="submit" [disabled]="ticketBookingForm.invalid">Book Tickets</button>
-      <a routerLink="/ipl" >Dashboard</a>
+      <button routerLink="/ipl" class="task-list" class="task-list">Dashboard</button>
     </form>
   
-    <div *ngIf="successMessage">
+    <div *ngIf="successMessage" class="success">
       <p>{{ successMessage }}</p>
     </div>
   
-    <div *ngIf="errorMessage">
+    <div *ngIf="errorMessage" class="error">
       <p>{{ errorMessage }}</p>
     </div>
-</div>
+  </div>
+  

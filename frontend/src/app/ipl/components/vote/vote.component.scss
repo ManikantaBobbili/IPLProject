@@ -1,0 +1,94 @@
+/* Container styles */
+.vote-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.vote-form-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Form field styles */
+.vote-form-container form div {
+  margin-bottom: 15px;
+}
+
+.vote-form-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.vote-form-container input[type="email"],
+.vote-form-container select {
+  width: calc(100% - 10px);
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.vote-form-container .error small {
+  color: #ff0000;
+  font-size: 0.9rem;
+}
+
+.vote-form-container button {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.vote-form-container button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.vote-form-container button:hover:not([disabled]) {
+  background-color: #0056b3;
+}
+
+.vote-form-container .task-list {
+  display: inline-block;
+  margin-left: 20px;
+  background-color: #17a2b8;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.vote-form-container .task-list:hover {
+  background-color: #117a8b;
+}
+
+/* Success and error message styles */
+.success {
+  color: #28a745;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.error {
+  color: #ff0000;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}

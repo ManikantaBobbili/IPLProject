@@ -5,15 +5,18 @@
         </div>
         <div class="card-body">
             <form [formGroup]="cricketerForm" (ngSubmit)="onSubmit()">
-                <!-- <div class="form-group">
-                    <label for="cricketerId">Cricketer ID</label>
-                    <input id="cricketerId" formControlName="cricketerId" type="number" placeholder="Enter Cricketer ID" class="form-control">
-                </div> -->
-                
-                <div class="form-group">
-                    <label for="teamId">Team ID</label>
-                    <input id="teamId" formControlName="teamId" type="number" placeholder="Enter Team ID" class="form-control">
+
+                <div>
+                    <label for="team">Team ID</label>
+                    <select formControlName="team">
+                        <option value="">Select a Team</option>
+                        <option *ngFor="let team of teams" [ngValue]="team">
+                          {{ team.teamName }}
+                        </option>
+                    </select>
                 </div>
+                
+                
 
                 <div class="form-group">
                     <label for="cricketerName">Cricketer Name</label>

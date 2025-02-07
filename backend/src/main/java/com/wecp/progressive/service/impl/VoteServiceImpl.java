@@ -17,6 +17,11 @@ public class VoteServiceImpl implements VoteService {
     @Autowired
     private VoteRepository voteRepository;
 
+    @Autowired
+    public VoteServiceImpl(VoteRepository voteRepository){
+        this.voteRepository=voteRepository;
+    }
+
     @Override
     public List<Vote> getAllVotes() {
         return voteRepository.findAll();
@@ -38,7 +43,4 @@ public class VoteServiceImpl implements VoteService {
         return count;
         
     }
-
-    
-
 }

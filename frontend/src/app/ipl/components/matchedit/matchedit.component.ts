@@ -37,7 +37,6 @@ export class MatchEditComponent implements OnInit {
       winnerTeam: [null]
     });
     this.route.params.subscribe(params => {
-        console.log(params);
         this.matchId = params.matchId;
         this.loadTeamsAndMatchDetails(this.matchId);
       });
