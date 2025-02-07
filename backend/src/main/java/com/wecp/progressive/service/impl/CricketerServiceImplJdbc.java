@@ -1,3 +1,6 @@
+
+
+
 package com.wecp.progressive.service.impl;
 
 import com.wecp.progressive.dao.CricketerDAO;
@@ -16,34 +19,6 @@ public class CricketerServiceImplJdbc implements CricketerService {
         this.cricketerDAO = cricketerDAO;
     }
 
-    // @Override
-    // public List<Cricketer> getAllCricketers() {
-    //     return List.of();
-    // }
-
-    // @Override
-    // public Integer addCricketer(Cricketer cricketer) {
-    //     return -1;
-    // }
-
-    // @Override
-    // public List<Cricketer> getAllCricketersSortedByExperience() {
-    //     return List.of();
-    // }
-    // @Override
-    // public void updateCricketer(Cricketer cricketer){
-
-    // }
-
-    // @Override
-    // public void deleteCricketer(int cricketerId){
-
-    // }
-
-    // @Override
-    // public Cricketer getCricketerById(int cricketerId){
-    //     return null;
-    // }
     @Override
     public List<Cricketer> getAllCricketers() throws SQLException {
         return cricketerDAO.getAllCricketers();

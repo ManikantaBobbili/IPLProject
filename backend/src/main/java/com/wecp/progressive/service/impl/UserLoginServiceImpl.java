@@ -14,18 +14,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
 public class UserLoginServiceImpl implements UserDetailsService {
-
+    @Autowired
     private UserRepository userRepository;
-
+    @Autowired
     private PasswordEncoder passwordEncoder;
     
-    @Autowired
-    public UserLoginServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    // @Autowired
+    // public UserLoginServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    //     this.userRepository = userRepository;
+    //     this.passwordEncoder = passwordEncoder;
+    // }
 
     public List<User> getAllUsers() {
         return userRepository.findAll();

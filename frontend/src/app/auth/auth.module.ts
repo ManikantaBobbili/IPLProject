@@ -6,14 +6,14 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { RegistrationComponent } from "./components/registration/registration.component";
 import { LoginComponent } from "./components/login/login.component";
-import { LogoutComponent } from "./components/logout/logout.component";
 import { RouterModule } from "@angular/router";
+import { LogoutComponent } from "./components/logout/logout.component";
 
 @NgModule({
-  declarations: [RegistrationComponent,
+  declarations: [
+    RegistrationComponent,
     LoginComponent,
     LogoutComponent
-
   ],
   imports: [
     CommonModule,

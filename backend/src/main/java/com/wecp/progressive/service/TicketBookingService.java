@@ -2,16 +2,15 @@ package com.wecp.progressive.service;
 
 import com.wecp.progressive.entity.TicketBooking;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface TicketBookingService {
-    List<TicketBooking> getAllTicketBookings() throws SQLException;
+    List<TicketBooking> getAllTicketBookings();
 
-    int createBooking(TicketBooking ticketBooking) throws SQLException;
+    int createBooking(TicketBooking ticketBooking);
 
-    void cancelBooking(int bookingId) throws SQLException;
+    void cancelBooking(int bookingId);
 
-    List<TicketBooking> getBookingsByUserEmail(String email) throws SQLException;
+    List<TicketBooking> getBookingsByUserEmail(String email);
 
 }

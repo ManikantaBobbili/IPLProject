@@ -1,6 +1,8 @@
 package com.wecp.progressive.controller;
 
 import com.wecp.progressive.entity.Team;
+import com.wecp.progressive.exception.TeamAlreadyExistsException;
+import com.wecp.progressive.exception.TeamDoesNotExistException;
 import com.wecp.progressive.service.impl.TeamServiceImplArraylist;
 import com.wecp.progressive.service.impl.TeamServiceImplJpa;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.ObjectInputFilter.Status;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -36,7 +39,10 @@ public class TeamController {
         try {
             Team team = teamServiceImplJpa.getTeamById(teamId);
             return new ResponseEntity<>(team, HttpStatus.OK);
-        } catch (SQLException e) {
+        }catch(TeamDoesNotExistException t){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } 
+        catch (SQLException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -46,7 +52,10 @@ public class TeamController {
         try {
             int teamId = teamServiceImplJpa.addTeam(team);
             return new ResponseEntity<>(teamId, HttpStatus.CREATED);
-        } catch (SQLException e) {
+        }catch(TeamAlreadyExistsException t){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } 
+        catch (SQLException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -57,7 +66,10 @@ public class TeamController {
             team.setTeamId(teamId);
             teamServiceImplJpa.updateTeam(team);
             return new ResponseEntity<>(HttpStatus.OK);
-        } catch (SQLException e) {
+        }catch(TeamAlreadyExistsException t){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } 
+        catch (SQLException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

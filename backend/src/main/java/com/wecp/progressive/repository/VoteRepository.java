@@ -1,28 +1,26 @@
 package com.wecp.progressive.repository;
 
-
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.wecp.progressive.entity.Vote;
-@Repository
-public interface VoteRepository extends JpaRepository<Vote,Integer> {
 
-    // @Query("SELECT v.category, COUNT(category) FROM Vote v GROUP BY v.category")
-    // Map<String,Long> findVotesCountByCategory();
+@Repository
+public interface VoteRepository extends JpaRepository<Vote, Integer> {
 
     Long countByCategory(String category);
 
-    //@Query("DELETE v FROM Vote v WHERE v.teamId = :teamId")
-    // void deleteByTeamId(int teamId);
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM Vote v WHERE v.team.teamId = :teamId")
+    void deleteByTeamId(@Param("teamId") int teamId);
 
-    @Query("DELETE FROM Vote v WHERE v.team.id = :teamId")
-    void deleteByTeamId(int teamId);
- 
-    @Query("DELETE FROM Vote v WHERE v.cricketer.id = :cricketerId")
-    void deleteByCricketerId(int cricketerId);
-    
-    // void deleteByCricketerId(int cricketerId);
-    
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM Vote v WHERE v.cricketer.cricketerId = :cricketerId")
+    void deleteByCricketerId(@Param("cricketerId") int cricketerId);
 }

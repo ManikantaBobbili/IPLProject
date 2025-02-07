@@ -17,7 +17,7 @@ public class Cricketer implements Comparable<Cricketer> {
     private int cricketerId;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    // @JoinColumn(name = "team_id")
+    @JoinColumn(name = "team_id")
     private Team team;
 
     private String cricketerName;

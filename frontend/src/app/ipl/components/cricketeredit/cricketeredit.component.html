@@ -18,7 +18,7 @@
       <div>
         <label for="cricketerName">Cricketer Name</label>
         <input id="cricketerName" formControlName="cricketerName" type="text" placeholder="Enter Cricketer Name">
-        <div *ngIf="cricketerForm.get('cricketerName')?.invalid" class="error">
+        <div *ngIf="cricketerForm.get('cricketerName')?.invalid && cricketerForm.get('cricketerName')?.touched" class="error">
           <small *ngIf="cricketerForm.get('cricketerName')?.hasError('required')">Cricketer Name is required.</small>
         </div>
       </div>
@@ -81,7 +81,7 @@
   
       <!-- Submit and Reset Buttons -->
       <button type="submit" [disabled]="cricketerForm.invalid">Update Cricketer</button>
-      <button routerLink="/ipl" class="task-list" class="task-list">Dashboard</button>
+      <a routerLink="/ipl" class="task-list" class="task-list">Dashboard</a>
     </form>
   
     <!-- Display success or error messages -->

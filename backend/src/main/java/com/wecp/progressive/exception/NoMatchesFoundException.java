@@ -1,7 +1,9 @@
 package com.wecp.progressive.exception;
 
-import java.sql.SQLException;
+public class NoMatchesFoundException extends RuntimeException{
 
-public class NoMatchesFoundException extends SQLException {
-   public NoMatchesFoundException(String m) {super(m);}
+    public NoMatchesFoundException(String message)
+    {
+        super(message);
+    }
 }

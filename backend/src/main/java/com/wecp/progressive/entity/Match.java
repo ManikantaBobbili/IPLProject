@@ -10,13 +10,12 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int matchId;
 
-
     @ManyToOne(cascade = CascadeType.MERGE)
-    // @JoinColumn(name = "first_team_id")
+    @JoinColumn(name = "first_team_id")
     private Team firstTeam;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    // @JoinColumn(name = "second_team_id")
+    @JoinColumn(name = "second_team_id")
     private Team secondTeam;
 
     @Temporal(TemporalType.DATE)
@@ -25,11 +24,9 @@ public class Match {
     private String venue;
     private String result;
     private String status;
-    private int winnerTeamId;
-    
 
     @ManyToOne
-    // @JoinColumn(name = "winner_team_id")
+    @JoinColumn(name = "winner_team_id")
     private Team winnerTeam;
 
     public Match() {
@@ -45,19 +42,6 @@ public class Match {
         this.status = status;
         this.winnerTeam.setTeamId(winnerTeamId);
     }
-    
-
-    
-
-    public int getWinnerTeamId() {
-        return winnerTeamId;
-    }
-
-    public void setWinnerTeamId(int winnerTeamId) {
-        this.winnerTeamId = winnerTeamId;
-    }
-
-
 
     public int getMatchId() {
         return matchId;

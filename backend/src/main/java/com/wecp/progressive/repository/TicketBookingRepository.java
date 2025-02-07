@@ -12,15 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.wecp.progressive.entity.TicketBooking;
 
 @Repository
-public interface TicketBookingRepository extends JpaRepository<TicketBooking,Integer> {
+public interface TicketBookingRepository extends JpaRepository<TicketBooking, Integer>{
 
     List<TicketBooking> findByEmail(String email);
-
-    // // @Query("DELETE FROM TicketBooking t WHERE t.team.id = :teamId")
-    // // void deleteByTeamId(int teamId);
- 
-    // @Query("DELETE FROM TicketBooking t WHERE t.match.id = :matchId")
-    // void deleteByMatchId(int matchId);
 
     @Modifying
     @Transactional

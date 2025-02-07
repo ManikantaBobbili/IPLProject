@@ -62,7 +62,6 @@ export class DashboardComponent implements OnInit {
 
     this.iplService.getVotesCountOfAllCategories().subscribe({
       next: (response) => {
-        console.log(response);
         const voteMap: Map<string, number> = response;
         if (voteMap.size > 0) {
           this.voteArray = Array.from(voteMap.entries()).map(([key, value]) => ({ key, value }));
